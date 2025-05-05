@@ -10,23 +10,23 @@ const Cart = () => {
   useEffect(() => {
     setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
   }, [cart]);
-
+        
   return (
-    <div className="w-full h-screen mt-[4rem] flex justify-center"> 
-      <div>
-        {cart.length > 0 ? (
+    <div className="cart w-full h-full mt-[4rem] lg:flex justify-center"> 
+      <div className="">
+        {cart.length > 0 ? ( 
 
-          <div className="flex   h-auto w-[70%] gap-[2rem]">
+          <div className="cartProduct flex  h-auto w-[70%] lg:gap-[2rem]">
 
-            <div>
+            <div className="item">
               {cart.map((item) => {
                 return <CartItem key={item.id} item={item} />;
               })}
             </div>
 
-            <div className="fixed right-[10rem]">
+            <div className="summary lg:fixed lg:right-[10rem]">
 
-            <div>
+            <div className="summary_text">
               <p className="text-lg mt-[4rem] text-green-700 font-semibold">YOUR CART</p>
               <p className="text-3xl text-green-700 font-bold">SUMMARY</p>
 
@@ -36,9 +36,9 @@ const Cart = () => {
             </div>
 
             <div className=" mt-[20rem]">
-              <p>Total Amount : <span className="font-semibold">${totalAmount}</span> </p>
+              <p className="summary_price">Total Amount : <span className="font-semibold">${totalAmount}</span> </p>
 
-                <div className="border h-8 w-[20rem] text-center mt-3 bg-green-700 text-white rounded-md">
+                <div className="border h-8 lg:w-[20rem] text-center mt-3 bg-green-700 text-white rounded-md">
                 <button>Checkout Now</button>
                 </div>
               

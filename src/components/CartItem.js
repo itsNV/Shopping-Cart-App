@@ -24,12 +24,12 @@ const CartItem = ({ item }) => {
     return (
       
         <div>
-      <div className='flex gap-7 pt-10 w-[80%]'>
+      <div className='cartItem flex lg:gap-7 pt-10 lg:w-[100%]'>
           <div>
               <img src={item.image} className="h-[11rem] pt-3 w-[11rem]" />
           </div>
 
-          <div className='bg-white'>
+          <div className=''>
               
               <p className='font-bold flex flex-wrap'>{item.title}</p>
               

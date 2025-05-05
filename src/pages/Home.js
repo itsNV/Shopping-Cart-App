@@ -43,16 +43,20 @@ const Home = () => {
 
     return (
       
-    <div className='flex w-[70%] h-screen flex-wrap gap-3 mt-[7rem] justify-center items-center'>
+    <div className='flex w-[70%] h-full flex-wrap gap-3 mt-[7rem] justify-center items-center'>
           
             {
                 loading ? (<Spinner />)
                     :
                     (
-                        items.map((item) => {
-                            return <Product key={item.id} item={ item} />
+                        
                             
-                        })
+                                items.map((item) => {
+                                    return <Product key={item.id} item={ item} />
+                                    
+                                })
+                            
+                       
                     )
             }
 
