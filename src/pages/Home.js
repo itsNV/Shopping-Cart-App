@@ -43,7 +43,7 @@ const Home = () => {
 
     return (
       
-    <div className='flex w-[70%] h-auto flex-wrap gap-3 mt-[7rem] justify-center items-center'>
+    <div className='flex w-[70%] h-screen flex-wrap gap-3 mt-[7rem] justify-center items-center'>
           
             {
                 loading ? (<Spinner />)
