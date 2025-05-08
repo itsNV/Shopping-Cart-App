@@ -12,7 +12,7 @@ const Cart = () => {
   }, [cart]);
         
   return (
-    <div className="cart w-full h-full mt-[4rem] lg:flex justify-center"> 
+    <div className="cart w-full lg:h-screen mt-[4rem] lg:flex justify-center"> 
       <div className="">
         {cart.length > 0 ? ( 
 
