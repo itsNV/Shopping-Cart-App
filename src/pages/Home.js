@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Spinner from '../components/Spinner';
 import toast from 'react-hot-toast';
 import Product from '../components/Product';
-import { useSelector } from 'react-redux';
+import Spinner from '../components/Spinner';
 
 const Home = () => {
 
@@ -42,26 +41,22 @@ const Home = () => {
 
 
     return (
-      
-    <div className='flex w-[70%] h-full flex-wrap gap-3 mt-[7rem] justify-center items-center'>
-          
-            {
-                loading ? (<Spinner />)
-                    :
-                    (
-                        
-                            
-                                items.map((item) => {
-                                    return <Product key={item.id} item={ item} />
-                                    
-                                })
-                            
-                       
-                    )
-            }
-
-    </div>
-  )
+      <div className='min-h-screen w-full px-4 py-8'>
+        <div className='max-w-7xl mx-auto'>
+          {loading ? (
+            <div className='min-h-[60vh] flex items-center justify-center'>
+              <Spinner />
+            </div>
+          ) : (
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'>
+              {items.map((item) => (
+                <Product key={item.id} item={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
 }
 
 export default Home

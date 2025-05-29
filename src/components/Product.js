@@ -24,31 +24,55 @@ const Product = ({ item }) => {
       : item.description;
 
   return (
-    <div className="product flex flex-col items-center w-[200px] h-auto pb-[10px]  ml-2 mb-3 rounded-xl shadow-sm shadow-gray-400 hover:scale-110 transition ease-in duration-300">
-      <p className="font-bold pt-6">{title}</p>
+    <div className="card-hover group relative bg-gray-800/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-violet-500/50">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-600/5 to-violet-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      {/* Product Image */}
+      <div className="aspect-square w-full overflow-hidden bg-gray-900/30 p-6">
+        <div className="h-full w-full flex items-center justify-center">
+          <img 
+            src={item.image} 
+            alt={title}
+            className="h-[80%] w-auto object-contain object-center group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl"
+          />
+        </div>
+      </div>
 
-      <p className="text-xs pl-7 pr-3 pt-3 text-slate-400">{description}</p>
+      {/* Product Info */}
+      <div className="relative p-6 bg-gradient-to-b from-gray-800/50 to-gray-900/50">
+        <div className="min-h-[4rem]">
+          <h3 className="text-lg font-semibold text-gray-100 mb-2 group-hover:text-violet-300 transition-colors duration-300">{title}</h3>
+          <p className="text-sm text-gray-400 line-clamp-2 group-hover:text-gray-300 transition-colors duration-300">{description}</p>
+        </div>
 
-      <img src={item.image}  className="h-[9rem] pt-3 w-[7rem]" />
+        <div className="mt-6 flex items-center justify-between">
+          <p className="text-xl font-bold text-violet-400 group-hover:text-violet-300">
+            ${item.price.toFixed(2)}
+          </p>
 
-      <div className="price w-full flex mt-10 justify-between">
-        <p>
-          <span className="text-green-600 font-bold text-sm pl-3">
-            ${item.price}
-          </span>
-        </p>
-
-              <div className=" border border-black rounded-full w-[7rem] h-[2rem] mr-2
-        text-center pt-1 text-sm hover:bg-black hover:text-white">
-          {cart.some((p) => p.id === item.id) ? (
-                      <button className="text-sm"
-                          onClick={removeFromCart}>
-              Remove Item
-            </button>
-          ) : (
-                          <button className="text-sm"
-                              onClick={addToCart}>Add To Cart</button>
-          )}
+          <button
+            onClick={cart.some((p) => p.id === item.id) ? removeFromCart : addToCart}
+            className={`cart-btn relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 overflow-hidden ${
+              cart.some((p) => p.id === item.id)
+                ? 'bg-red-500/90 hover:bg-red-600 text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/40'
+                : 'bg-violet-500/90 hover:bg-violet-600 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40'
+            }`}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              {cart.some((p) => p.id === item.id) ? (
+                <>
+                  <span>Remove</span>
+                  <span className="text-lg">×</span>
+                </>
+              ) : (
+                <>
+                  <span>Add to Cart</span>
+                  <span className="text-lg">+</span>
+                </>
+              )}
+            </span>
+          </button>
         </div>
       </div>
     </div>

@@ -29,9 +29,9 @@ const CartItem = ({ item }) => {
               <img src={item.image} className="h-[11rem] pt-3 w-[11rem]" />
           </div>
 
-          <div className=''>
+          <div >
               
-              <p className='font-bold flex flex-wrap'>{item.title}</p>
+              <p className='font-bold text-white flex flex-wrap'>{item.title}</p>
               
               <p className='mt-4 pr-3 text-xs  pt-3 text-slate-400'>{description}</p>
 

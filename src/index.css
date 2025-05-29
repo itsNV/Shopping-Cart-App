@@ -2,34 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
-.spinner {
-  
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  padding: 1px;
-  
-  background: conic-gradient(#0000 10%, #766df4) content-box;
-  -webkit-mask: repeating-conic-gradient(
-      #0000 0deg,
-      #000 1deg 20deg,
-      #0000 21deg 36deg
-    ),
-    radial-gradient(
-      farthest-side,
-      #0000 calc(100% - 9px),
-      #000 calc(100% - 8px)
-    );
-  -webkit-mask-composite: destination-in;
-  mask-composite: intersect;
-  animation: s4 1s infinite steps(10);
-}
-@keyframes s4 {
-  to {
-    transform: rotate(1turn);
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scale-click {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animated-bg {
+  background: linear-gradient(
+    45deg,
+    rgba(76, 29, 149, 0.35),
+    rgba(124, 58, 237, 0.35),
+    rgba(139, 92, 246, 0.35),
+    rgba(167, 139, 250, 0.35)
+  );
+  background-size: 400% 400%;
+  animation: gradient-animation 5s ease infinite;
+}
+
+.glow-effect {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+.cart-btn {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.cart-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(255, 255, 255, 0.2) 45%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 75%,
+    transparent 100%
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+.cart-btn:active {
+  animation: scale-click 0.2s ease-in-out;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid #FFF;
+  border-bottom-color: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotation {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
 @media screen and (max-width : 266px) {
 
